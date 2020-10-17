@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Hello from './Hello'
 import DadJoke from '../containers/DadJoke'
 import styled from 'styled-components'
+import initWebsocket from '../websocket'
 
 const MainContent = styled.div`
   margin: 10vh 0;
 `
 
 const App = () => {
+  initWebsocket()
   return (
     <MainContent className="lt-content-column">
       <Header />
