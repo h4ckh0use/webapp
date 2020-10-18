@@ -17,7 +17,7 @@ const LogsBox = styled.div`
 `
 
 const UsersBox = styled.div`
-  width: 400px;
+  width: 200px;
   padding: 16px;
   background: #ffffff11;
   position: absolute;
