@@ -4,6 +4,7 @@ import Logs from '../components/Logs'
 import ChatEntry from '../components/ChatEntry'
 import EmergencySound from './emergency.mp3'
 import Emergency from '../components/Emergency'
+import UserList from '../components/UserList'
 
 const LogsBox = styled.div`
   width: 400px;
@@ -11,6 +12,16 @@ const LogsBox = styled.div`
   background: #ffffff11;
   position: absolute;
   right: 10px;
+  top: 10px;
+  border-radius: 5px;
+`
+
+const UsersBox = styled.div`
+  width: 400px;
+  padding: 16px;
+  background: #ffffff11;
+  position: absolute;
+  left: 10px;
   top: 10px;
   border-radius: 5px;
 `
@@ -31,6 +42,7 @@ const ParseWebsocket = ({ ws }) => {
       time: Date.now(),
     },
   ])
+  const [users, setUsers] = useState([])
   const [chatEntry, setChatEntry] = useState('')
   const [shouldShowEmergencyWrapper, setShowEmergencyWrapper] = useState(false)
   const [isEmergency, setIsEmergency] = useState(false)
@@ -39,6 +51,9 @@ const ParseWebsocket = ({ ws }) => {
   ws.onmessage = (message) => {
     if (message.data !== 'Successful connection!') {
       const data = JSON.parse(message.data)
+      if (data.updateUserList) {
+        setUsers(data.users)
+      }
       if (data.broadcast) {
         setMessages([...messages, data])
 
@@ -98,6 +113,9 @@ const ParseWebsocket = ({ ws }) => {
         user={emergencyCauser}
         showWrapper={shouldShowEmergencyWrapper}
       />
+      <UsersBox>
+        <UserList users={users} />
+      </UsersBox>
       <LogsBox>
         <ChatContainer id="scrolling_div">
           <Logs messages={messages} />
