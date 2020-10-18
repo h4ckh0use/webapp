@@ -8,11 +8,11 @@ import Emergency from '../components/Emergency'
 const LogsBox = styled.div`
   width: 400px;
   padding: 16px;
-  background: rgba(26, 26, 41, 0.6);
+  background: #ffffff11;
   position: absolute;
   right: 10px;
   top: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
 `
 
 const ChatContainer = styled.div`

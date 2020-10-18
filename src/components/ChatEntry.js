@@ -13,17 +13,20 @@ const StyledInput = styled.input`
   && > p {
     margin: 0;
   }
-  border-radius: 10px !important;
+
+  border-radius: 5px !important;
   margin: 0 !important;
 `
 
 const Button = styled.button`
   flex: 1;
-  border-radius: 10px !important;
+  border-radius: 5px !important;
   margin-left: 5px;
   border: none;
   height: 2.32em;
-  font-family: 'Roboto';
+  font-weight: 700;
+  background: #fff;
+  font-family: 'Roboto Mono';
 `
 
 export default ({ handleChange, handleClick, chatValue, handleKeyDown }) => {
