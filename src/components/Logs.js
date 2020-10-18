@@ -46,7 +46,7 @@ export default ({ messages }) => {
     <>
       {messages.map((message) => {
         return (
-          <MessageBox key={message + moment(message.time)}>
+          <MessageBox key={message.message + message.time}>
             <LeftDiv>
               <Timestamp>{message.user}</Timestamp>
               <P>{message.message}</P>

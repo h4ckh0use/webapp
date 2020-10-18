@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import { DBaddTime, currTimer, resetTimer } from '../utility/firebase'
-import { useHistory } from 'react-router-dom'
 import Countdown from './Countdown'
 
 import ParseWebsocket from '../containers/ParseWebsocket'
 
 const Callroom = (props) => {
-  const history = useHistory()
-  const location = useLocation()
-
   const [time, setTime] = useState('')
   const [count, setCount] = useState(0) // using this to trigger handleEffect
 
@@ -30,25 +25,20 @@ const Callroom = (props) => {
     resetTimer()
   }
 
-  if (!location.state || !location.state.name) {
-    history.push('/')
-    return null
-  } else {
-    return (
-      <>
-        <ParseWebsocket ws={window.ws} />
-        <Countdown countDownDate={time} />
-        <button
-          onClick={() => {
-            reset()
-          }}
-        >
-          {' '}
-          Reset Timer{' '}
-        </button>
-      </>
-    )
-  }
+  return (
+    <>
+      <ParseWebsocket ws={window.ws} />
+      <Countdown countDownDate={time} />
+      <button
+        onClick={() => {
+          reset()
+        }}
+      >
+        {' '}
+        Reset Timer{' '}
+      </button>
+    </>
+  )
 }
 
 export default Callroom
