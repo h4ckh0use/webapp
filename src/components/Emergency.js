@@ -31,14 +31,16 @@ const EmergencyWrapper = styled.div`
   width: 100vw;
 `
 
-const Emergency = ({ user, isEmergency }) => {
-  return (
+const Emergency = ({ user, isEmergency, showWrapper }) => {
+  return showWrapper ? (
     <>
       <EmergencyWrapper>
         <EmergencyText isEmergency={isEmergency}>{user} was off task!</EmergencyText>
       </EmergencyWrapper>
       <EmergencyImage isEmergency={isEmergency} src={emergency} alt="Emergency" />
     </>
+  ) : (
+    ''
   )
 }
 

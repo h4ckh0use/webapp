@@ -25,6 +25,7 @@ const ChatContainer = styled.div`
 const ParseWebsocket = ({ ws }) => {
   const [messages, setMessages] = useState(['Welcome to imPomter'])
   const [chatEntry, setChatEntry] = useState('')
+  const [shouldShowEmergencyWrapper, setShowEmergencyWrapper] = useState(false)
   const [isEmergency, setIsEmergency] = useState(false)
   const [emergencyCauser, setEmergencyCauser] = useState('')
 
@@ -35,6 +36,7 @@ const ParseWebsocket = ({ ws }) => {
         setMessages([...messages, data.message])
 
         if (data.emergency) {
+          setShowEmergencyWrapper(true)
           setIsEmergency(true)
           setEmergencyCauser(data.user || '')
           let audio = new Audio(EmergencySound)
@@ -44,6 +46,9 @@ const ParseWebsocket = ({ ws }) => {
           setTimeout(() => {
             setIsEmergency(false)
           }, 3000)
+          setTimeout(() => {
+            setShowEmergencyWrapper(false)
+          }, 5000)
         }
       }
     }
@@ -81,7 +86,11 @@ const ParseWebsocket = ({ ws }) => {
 
   return (
     <>
-      <Emergency isEmergency={isEmergency} user={emergencyCauser} />
+      <Emergency
+        isEmergency={isEmergency}
+        user={emergencyCauser}
+        showWrapper={shouldShowEmergencyWrapper}
+      />
       <LogsBox>
         <ChatContainer id="scrolling_div">
           <Logs messages={messages} />
