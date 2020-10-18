@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   }
 
   animation-duration: 1s;
-  animation-timing-function: ease-out;
+  animation-timing-function: ease;
   animation-name: slidein;
 
   display: flex;

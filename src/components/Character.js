@@ -13,7 +13,7 @@ const SpinSVG = styled.svg`
 
   @keyframes slidein {
     from {
-      margin-right: 100px;
+      margin-right: 400px;
       opacity: 0;
     }
 
@@ -23,7 +23,7 @@ const SpinSVG = styled.svg`
     }
   }
 
-  animation: slidein 2s ease-out, spin 8s linear infinite;
+  animation: slidein 1s ease, spin 8s linear infinite;
 `
 
 export default ({ primaryColor, shadowColor }) => {
