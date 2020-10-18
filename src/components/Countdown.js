@@ -1,0 +1,36 @@
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import TimeDisplay from '../components/TimeDisplay'
+// import ProgressBar from '../components/ProgressBar'
+
+export const Centered = styled.div`
+  text-align: center;
+`
+
+const Countdown = ({ countDownDate }) => {
+  const [now, setNow] = useState(new Date())
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setNow(new Date())
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  // calculate ratios
+  const diff = Math.max(countDownDate - now, 0) // floor to 0 if in the past
+  const minutes = Math.floor((diff / (1000 * 60)) % 60)
+  const seconds = Math.floor((diff / 1000) % 60)
+
+  // const rawHours = 24 * days + hours + minutes / 60
+  // const progress = 1 - (rawHours / eventDurationHours)
+
+  return (
+    <Centered>
+      <TimeDisplay minutes={minutes} seconds={seconds} />
+      {/* <ProgressBar percent={progress * 100} /> */}
+    </Centered>
+  )
+}
+
+export default Countdown
