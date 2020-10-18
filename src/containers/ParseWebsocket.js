@@ -51,7 +51,14 @@ const ParseWebsocket = ({ ws }) => {
 
   const handleClick = () => {
     if (!!chatEntry) {
-      ws.send(JSON.stringify({ broadcast: true, message: chatEntry }))
+      ws.send(
+        JSON.stringify({
+          broadcast: true,
+          user: window.user,
+          message: chatEntry,
+          time: Date.now(),
+        })
+      )
       setChatEntry('')
     }
   }
