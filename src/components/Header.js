@@ -4,6 +4,7 @@ import Character from './Character'
 
 const Title = styled.h1`
   font-size: 3em;
+  margin: 0.4em;
   font-family: Roboto Mono;
 `
 

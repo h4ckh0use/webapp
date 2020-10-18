@@ -8,11 +8,14 @@ import Callroom from './Callroom'
 import initWebsocket from '../websocket'
 
 const MainContent = styled.div`
-  margin: 10vh 0;
+  margin: 8vh 0;
 `
 const App = () => {
+  if (!window.ws) {
+    initWebsocket()
+  }
+
   const [color, setColor] = useState(['#C01701', '#760B39'])
-  initWebsocket()
 
   const colourCallback = (color) => {
     setColor(color)
