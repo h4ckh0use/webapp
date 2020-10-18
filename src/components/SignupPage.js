@@ -23,6 +23,7 @@ export default function SignupPage(props) {
       pathname: '/room',
       state: { name: name },
     })
+    window.ws.send(JSON.stringify({ broadcast: true, message: `${name} joined the room!` }))
   }
 
   return (

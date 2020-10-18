@@ -2,7 +2,6 @@ import React from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import DadJoke from '../containers/DadJoke'
 import styled from 'styled-components'
 import SignupPage from './SignupPage'
 import Callroom from './Callroom'
@@ -14,7 +13,7 @@ const MainContent = styled.div`
 const App = () => {
   initWebsocket()
   return (
-    <MainContent className="lt-content-column">
+    <MainContent className="lt-content-column" class="stars">
       <main>
         {/*
             The Router tag allows us to conditionally render components
@@ -25,9 +24,6 @@ const App = () => {
           <Switch>
             <Route path="/room">
               <Callroom />
-            </Route>
-            <Route path="/joke">
-              <DadJoke />
             </Route>
             <Route path="/">
               <SignupPage />

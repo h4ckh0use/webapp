@@ -3,8 +3,9 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { add, DBaddTime, currTimer, resetTimer } from '../utility/firebase'
 import { useHistory } from 'react-router-dom'
-
 import Countdown from './Countdown'
+
+import ParseWebsocket from '../containers/ParseWebsocket'
 
 const Title = styled.h1`
   font-family: Roboto Mono;
@@ -41,6 +42,7 @@ const Callroom = (props) => {
   } else {
     return (
       <>
+        <ParseWebsocket ws={window.ws} />
         <Title>Hey there, {location.state.name}!</Title>
         <Countdown countDownDate={time} />
         <button
