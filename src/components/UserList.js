@@ -15,10 +15,10 @@ const P = styled.p`
 export default ({ users }) => {
   return (
     <>
-      {Object.entries(users).map((username, color) => {
+      {Object.entries(users).map(([username, color]) => {
         return (
           <Flexyboi>
-            <Avatar />
+            <Avatar primaryColor={color[0]} shadowColor={color[1]} />
             <P>{username}</P>
           </Flexyboi>
         )

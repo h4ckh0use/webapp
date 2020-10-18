@@ -23,6 +23,7 @@ const FormLabel = styled.label`
 // `
 
 export default function SignupPage(props) {
+  const [color, setColor] = useState()
   let history = useHistory()
 
   const colorsArray = [
@@ -58,6 +59,7 @@ export default function SignupPage(props) {
   const [name, setName] = useState('')
 
   const handleColorChange = ({ hex }) => {
+    setColor(colorsMap[hex])
     props.colourCallback(colorsMap[hex])
   }
 
@@ -67,14 +69,15 @@ export default function SignupPage(props) {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    DBadduser(name)
 
-    window.user = name
-    window.localStorage.setItem('user', name)
-    history.push('/room')
-    // TODO ADD COLOUR
-    window.ws.send(JSON.stringify({ newUser: true, username: name, color: '' }))
-    window.ws.send(JSON.stringify({ broadcast: true, message: `${name} joined the room!` }))
+    if (name) {
+      window.user = name
+      window.localStorage.setItem('user', name)
+      history.push('/room')
+      // TODO ADD COLOUR
+      window.ws.send(JSON.stringify({ newUser: true, username: name, color }))
+      window.ws.send(JSON.stringify({ broadcast: true, message: `${name} joined the room!` }))
+    }
   }
 
   return (
