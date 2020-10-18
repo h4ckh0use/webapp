@@ -22,27 +22,27 @@ export default function SignupPage(props) {
 
   const handleChange = (e) => {
     setName(e.target.value)
-    console.log(name)
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
-    console.log('Submitted: ', name)
     DBadduser(name)
 
     window.user = name
-    history.push({
-      pathname: '/room',
-      state: { name: name },
-    })
+    window.localStorage.setItem('user', name)
+    history.push('/room')
     window.ws.send(JSON.stringify({ broadcast: true, message: `${name} joined the room!` }))
   }
 
   return (
     <div>
       <SignupTitle>Character</SignupTitle>
-      <form
-        onSubmit={(e) => {
+      <FormLabel>
+        <span>Name:</span>
+        <input onChange={(e) => handleChange(e)} type="text" value={name} />
+      </FormLabel>
+      <button
+        onClick={(e) => {
           onSubmit(e)
         }}
       >
