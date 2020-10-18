@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
-import { add, DBaddTime, currTimer, resetTimer } from '../utility/firebase'
+import { DBaddTime, currTimer, resetTimer } from '../utility/firebase'
 import { useHistory } from 'react-router-dom'
 import Countdown from './Countdown'
 
