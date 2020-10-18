@@ -8,9 +8,10 @@ const Title = styled.h1`
 const Header = () => {
   return (
     <header>
-      <Title>Template &mdash; React</Title>
+      <Title>Among &mdash; Us</Title>
       <p>
-        For when <code>create-react-app</code> just doesn't give you what you want.
+        Calls an emergency meeting among your friends when someone is found not working on their
+        tasks.
       </p>
     </header>
   )

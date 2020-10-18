@@ -5,15 +5,21 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Hello from './Hello'
 import DadJoke from '../containers/DadJoke'
 import styled from 'styled-components'
+import SignupPage from './SignupPage'
+import { useHistory } from 'react-router-dom'
+import Callroom from './Callroom'
 
 const MainContent = styled.div`
   margin: 10vh 0;
 `
 
 const App = () => {
+  const history = useHistory()
+
   return (
     <MainContent className="lt-content-column">
       <Header />
+
       <main>
         {/*
             The Router tag allows us to conditionally render components
@@ -22,11 +28,14 @@ const App = () => {
           */}
         <Router>
           <Switch>
+            <Route path="/room">
+              <Callroom />
+            </Route>
             <Route path="/joke">
               <DadJoke />
             </Route>
             <Route path="/">
-              <Hello />
+              <SignupPage />
             </Route>
           </Switch>
         </Router>
