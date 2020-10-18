@@ -8,4 +8,5 @@ export default styled.button`
   border-radius: 5px;
   margin: 2em 0;
   font-family: Roboto Mono;
+  cursor: pointer;
 `

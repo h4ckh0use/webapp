@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -8,11 +8,14 @@ import Callroom from './Callroom'
 import initWebsocket from '../websocket'
 
 const MainContent = styled.div`
-  margin: 10vh 0;
+  margin: 8vh 0;
 `
 const App = () => {
   const [color, setColor] = useState(['#C01701', '#760B39'])
-  initWebsocket()
+
+  useEffect(() => {
+    initWebsocket()
+  }, [])
 
   const colourCallback = (color) => {
     setColor(color)
