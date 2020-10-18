@@ -7,11 +7,6 @@ import Countdown from './Countdown'
 
 import ParseWebsocket from '../containers/ParseWebsocket'
 
-const Title = styled.h1`
-  font-family: Roboto Mono;
-  text-align: center;
-`
-
 const Callroom = (props) => {
   const history = useHistory()
   const location = useLocation()
@@ -43,7 +38,6 @@ const Callroom = (props) => {
     return (
       <>
         <ParseWebsocket ws={window.ws} />
-        <Title>Hey there, {location.state.name}!</Title>
         <Countdown countDownDate={time} />
         <button
           onClick={() => {
