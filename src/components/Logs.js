@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import moment from 'moment'
 
 const MessageBox = styled.div`
   background: white;
@@ -15,12 +16,19 @@ const MessageBox = styled.div`
   }
 `
 
+const Timestamp = styled.p`
+  font-size: 0.8em;
+  padding-bottom: 1px;
+`
+
 export default ({ messages }) => {
   return (
     <>
       {messages.map((message) => {
         return (
-          <MessageBox key={message}>
+          <MessageBox key={message + Date.now()}>
+            <Timestamp>{moment(message.time).format('h:mm')}</Timestamp>
+            <Timestamp>{message.user}</Timestamp>
             <p>{message}</p>
           </MessageBox>
         )

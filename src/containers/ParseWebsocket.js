@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import Logs from '../components/Logs'
 import ChatEntry from '../components/ChatEntry'
-import emergency from './emergency.mp3'
+import EmergencySound from './emergency.mp3'
+import Emergency from '../components/Emergency'
 
 const LogsBox = styled.div`
   width: 400px;
@@ -28,20 +29,30 @@ const ParseWebsocket = ({ ws }) => {
     `Welcome to imposter, ${location.state.name}! Try not to act too sus`,
   ])
   const [chatEntry, setChatEntry] = useState('')
+  const [shouldShowEmergencyWrapper, setShowEmergencyWrapper] = useState(false)
+  const [isEmergency, setIsEmergency] = useState(false)
+  const [emergencyCauser, setEmergencyCauser] = useState('')
 
   ws.onmessage = (message) => {
     if (message.data !== 'Successful connection!') {
       const data = JSON.parse(message.data)
-      console.log(data.broadcast)
-
       if (data.broadcast) {
         setMessages([...messages, data.message])
 
         if (data.emergency) {
-          let audio = new Audio(emergency)
+          setShowEmergencyWrapper(true)
+          setIsEmergency(true)
+          setEmergencyCauser(data.user || '')
+          let audio = new Audio(EmergencySound)
           console.log('audio playing')
           audio.volume = 0.5
           audio.play()
+          setTimeout(() => {
+            setIsEmergency(false)
+          }, 3000)
+          setTimeout(() => {
+            setShowEmergencyWrapper(false)
+          }, 5000)
         }
       }
     }
@@ -49,7 +60,14 @@ const ParseWebsocket = ({ ws }) => {
 
   const handleClick = () => {
     if (!!chatEntry) {
-      ws.send(JSON.stringify({ broadcast: true, message: chatEntry }))
+      ws.send(
+        JSON.stringify({
+          broadcast: true,
+          user: window.user,
+          message: chatEntry,
+          time: Date.now(),
+        })
+      )
       setChatEntry('')
     }
   }
@@ -71,18 +89,25 @@ const ParseWebsocket = ({ ws }) => {
   })
 
   return (
-    <LogsBox>
-      <ChatContainer id="scrolling_div">
-        <Logs messages={messages} />
-        <span id="element_within_div" />
-      </ChatContainer>
-      <ChatEntry
-        chatValue={chatEntry}
-        handleChange={(e) => handleChange(e)}
-        handleClick={handleClick}
-        handleKeyDown={handleKeyDown}
+    <>
+      <Emergency
+        isEmergency={isEmergency}
+        user={emergencyCauser}
+        showWrapper={shouldShowEmergencyWrapper}
       />
-    </LogsBox>
+      <LogsBox>
+        <ChatContainer id="scrolling_div">
+          <Logs messages={messages} />
+          <span id="element_within_div" />
+        </ChatContainer>
+        <ChatEntry
+          chatValue={chatEntry}
+          handleChange={(e) => handleChange(e)}
+          handleClick={handleClick}
+          handleKeyDown={handleKeyDown}
+        />
+      </LogsBox>
+    </>
   )
 }
 
