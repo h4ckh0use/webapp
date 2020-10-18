@@ -2,11 +2,9 @@ import React from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Hello from './Hello'
 import DadJoke from '../containers/DadJoke'
 import styled from 'styled-components'
 import SignupPage from './SignupPage'
-import { useHistory } from 'react-router-dom'
 import Callroom from './Callroom'
 import initWebsocket from '../websocket'
 
@@ -15,8 +13,6 @@ const MainContent = styled.div`
 `
 
 const App = () => {
-  const history = useHistory()
-
   initWebsocket()
   return (
     <MainContent className="lt-content-column">
