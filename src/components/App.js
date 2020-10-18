@@ -11,12 +11,11 @@ const MainContent = styled.div`
   margin: 8vh 0;
 `
 const App = () => {
-  const [color, setColor] = useState(['#C01701', '#760B39'])
-
-  useEffect(() => {
+  if (!window.ws) {
     initWebsocket()
-  }, [])
+  }
 
+  const [color, setColor] = useState(['#C01701', '#760B39'])
   const colourCallback = (color) => {
     setColor(color)
   }
