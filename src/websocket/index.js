@@ -1,5 +1,5 @@
 import { COMMAND } from '../constants'
-const WEBHOOK_URL = '040b48f5e996.ngrok.io'
+const WEBHOOK_URL = 'hackhouse-backend.herokuapp.com/'
 
 export default () => {
   console.log('Websocket inited')
