@@ -34,14 +34,16 @@ const Callroom = (props) => {
     <>
       <ParseWebsocket ws={window.ws} />
       <Countdown countDownDate={time} />
-      <button
-        onClick={() => {
-          reset()
-        }}
-      >
-        {' '}
-        Reset Timer{' '}
-      </button>
+      <Centered>
+        <Button
+          onClick={() => {
+            reset()
+          }}
+        >
+          {' '}
+          Reset Timer{' '}
+        </Button>
+      </Centered>
     </>
   )
 }
