@@ -3,14 +3,14 @@ import styled from 'styled-components'
 import moment from 'moment'
 
 const MessageBox = styled.div`
-  background: white;
+  background: #fff;
   padding: 10px;
   && > p {
     color: black;
     margin: 0;
   }
   margin: 10px 0;
-  border-radius: 10px;
+  border-radius: 5px;
   &&:nth-child(1) {
     margin-top: 0;
   }

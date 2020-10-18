@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { DBadduser } from '../utility/firebase'
 import styled from 'styled-components'
+import Button from './Button'
 
 const SignupTitle = styled.h1`
   font-family: Roboto Mono;
@@ -49,7 +50,7 @@ export default function SignupPage(props) {
           <span>Name:</span>
           <input onChange={(e) => handleChange(e)} type="text" value={name} />
         </FormLabel>
-        <button>Join</button>
+        <Button>Join</Button>
       </form>
     </div>
   )

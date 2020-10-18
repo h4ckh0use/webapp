@@ -3,8 +3,13 @@ import { useLocation } from 'react-router-dom'
 import { DBaddTime, currTimer, resetTimer } from '../utility/firebase'
 import { useHistory } from 'react-router-dom'
 import Countdown from './Countdown'
-
+import Button from './Button'
+import styled from 'styled-components'
 import ParseWebsocket from '../containers/ParseWebsocket'
+
+const Centered = styled.div`
+  text-align: center;
+`
 
 const Callroom = (props) => {
   const history = useHistory()
@@ -38,14 +43,15 @@ const Callroom = (props) => {
       <>
         <ParseWebsocket ws={window.ws} />
         <Countdown countDownDate={time} />
-        <button
-          onClick={() => {
-            reset()
-          }}
-        >
-          {' '}
-          Reset Timer{' '}
-        </button>
+        <Centered>
+          <Button
+            onClick={() => {
+              reset()
+            }}
+          >
+            Reset Timer
+          </Button>
+        </Centered>
       </>
     )
   }
