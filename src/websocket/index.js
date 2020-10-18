@@ -23,6 +23,14 @@ export default () => {
     )
   }
 
+  window.addEventListener(
+    'message',
+    (event) => {
+      console.log(event)
+    },
+    false
+  )
+
   window.iWasBad = iWasBad
 
   const passIWasBad = new CustomEvent('passIWasBad', { detail: iWasBad })
