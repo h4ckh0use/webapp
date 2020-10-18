@@ -3,7 +3,7 @@ const WEBHOOK_URL = '040b48f5e996.ngrok.io'
 
 export default () => {
   console.log('Websocket inited')
-  window.ws = new WebSocket(`ws://${WEBHOOK_URL}`)
+  window.ws = new WebSocket(`wss://${WEBHOOK_URL}`)
   const ws = window.ws
   ws.onopen = () => {
     ws.send(JSON.stringify({ message: 'Someone joined' }))
