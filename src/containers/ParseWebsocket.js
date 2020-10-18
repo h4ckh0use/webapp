@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Logs from '../components/Logs'
 import ChatEntry from '../components/ChatEntry'
+import emergency from './emergency.mp3'
 
 const LogsBox = styled.div`
   width: 400px;
@@ -31,6 +32,13 @@ const ParseWebsocket = ({ ws }) => {
 
       if (data.broadcast) {
         setMessages([...messages, data.message])
+
+        if (data.emergency) {
+          let audio = new Audio(emergency)
+          console.log('audio playing')
+          audio.volume = 0.5
+          audio.play()
+        }
       }
     }
   }
