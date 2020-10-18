@@ -1,5 +1,4 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 import Countdown from './Countdown'
 import ParseWebsocket from '../containers/ParseWebsocket'
 
@@ -10,12 +9,10 @@ const date_25 = new Date(date.getTime() + 25 * 60000)
 // The countdown time needs to be pulled from firebase
 
 const Callroom = (props) => {
-  const location = useLocation()
   return (
     <>
       <Countdown countDownDate={date_25} />
       <ParseWebsocket ws={window.ws} />
-      <p>Hey There {location.state.name}</p>
     </>
   )
 }
