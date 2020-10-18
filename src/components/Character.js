@@ -10,7 +10,20 @@ const SpinSVG = styled.svg`
       transform: rotate(360deg);
     }
   }
-  animation: spin 8s linear infinite;
+
+  @keyframes slidein {
+    from {
+      margin-right: 100px;
+      opacity: 0;
+    }
+
+    to {
+      margin-right: 0;
+      opacity: 1;
+    }
+  }
+
+  animation: slidein 2s ease-out, spin 8s linear infinite;
 `
 
 export default ({ primaryColor, shadowColor }) => {
