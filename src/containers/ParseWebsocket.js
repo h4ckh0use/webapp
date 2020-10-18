@@ -36,6 +36,7 @@ const ParseWebsocket = ({ ws }) => {
         if (data.emergency) {
           let audio = new Audio(emergency)
           console.log('audio playing')
+          audio.volume = 0.5
           audio.play()
         }
       }
