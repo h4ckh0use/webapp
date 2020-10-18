@@ -1,0 +1,3 @@
+export const COMMAND = {
+  EMERGENCY_MEETING: 'EMERGENCY_MEETING',
+}

@@ -8,6 +8,7 @@ import styled from 'styled-components'
 import SignupPage from './SignupPage'
 import { useHistory } from 'react-router-dom'
 import Callroom from './Callroom'
+import initWebsocket from '../websocket'
 
 const MainContent = styled.div`
   margin: 10vh 0;
@@ -16,6 +17,7 @@ const MainContent = styled.div`
 const App = () => {
   const history = useHistory()
 
+  initWebsocket()
   return (
     <MainContent className="lt-content-column">
       <Header />
