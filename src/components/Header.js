@@ -13,7 +13,7 @@ const StyledHeader = styled.header`
   width: 100vw;
 `
 
-const Header = ({ color = ['#C01701', '#760B39'] }) => {
+const Header = ({ color }) => {
   return (
     <StyledHeader>
       <Title>impostor</Title>

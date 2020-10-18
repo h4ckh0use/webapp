@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { DBadduser } from '../utility/firebase'
 import styled from 'styled-components'
 import Button from './Button'
 import { CirclePicker } from 'react-color'
@@ -16,14 +15,8 @@ const FormLabel = styled.label`
   }
 `
 
-// const CirclePickerContainer = styled(CirclePicker)`
-//   margin-right: unset;
-//   margin-bottom: unset;
-//   margin: auto;
-// `
-
 export default function SignupPage(props) {
-  const [color, setColor] = useState()
+  const [color, setColor] = useState(['#C01701', '#760B39'])
   let history = useHistory()
 
   const colorsArray = [
