@@ -13,11 +13,11 @@ const StyledHeader = styled.header`
   width: 100vw;
 `
 
-const Header = () => {
+const Header = ({ color = ['#C01701', '#760B39'] }) => {
   return (
     <StyledHeader>
       <Title>impostor</Title>
-      <Character />
+      <Character primaryColor={color[0]} shadowColor={color[1]} />
       <p>
         Calls an emergency meeting among your friends when someone is found not working on their
         tasks.

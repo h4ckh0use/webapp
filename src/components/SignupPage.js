@@ -40,9 +40,26 @@ export default function SignupPage(props) {
     '#ffffff',
   ]
 
+  const colorsMap = {
+    '#c01701': ['#c01701', '#770A39'],
+    '#ea7f00': ['#ea7f00', '#B14100'],
+    '#ffd84e': ['#ffd84e', '#c38d37'],
+    '#2fea00': ['#2fea00', '#2DA82A'],
+    '#237f18': ['#237f18', '#134D29'],
+    '#1125da': ['#1125da', '#070B93'],
+    '#f5d8ff': ['#f5d8ff', '#EBB6FE'],
+    '#53fdd7': ['#53fdd7', '#35A7C0'],
+    '#e0d9ff': ['#e0d9ff', '#D1C6FF'],
+    '#e752be': ['#e752be', '#A728B3'],
+    '#7a7a7a': ['#7a7a7a', '#363232'],
+    '#ffffff': ['#D4DFF0', '#8394C2'],
+  }
+
   const [name, setName] = useState('')
 
-  const handleColorChange = ({ hex }) => console.log(hex)
+  const handleColorChange = ({ hex }) => {
+    props.colourCallback(colorsMap[hex])
+  }
 
   const handleChange = (e) => {
     setName(e.target.value)

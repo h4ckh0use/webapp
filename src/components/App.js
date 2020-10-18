@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -11,10 +11,16 @@ const MainContent = styled.div`
   margin: 10vh 0;
 `
 const App = () => {
+  const [color, setColor] = useState()
   initWebsocket()
+
+  const colourCallback = (color) => {
+    setColor(color)
+  }
+
   return (
     <MainContent className="lt-content-column" class="stars">
-      <Header />
+      <Header color={color} />
       <main>
         {/*
             The Router tag allows us to conditionally render components
@@ -27,7 +33,7 @@ const App = () => {
               <Callroom />
             </Route>
             <Route path="/">
-              <SignupPage />
+              <SignupPage colourCallback={colourCallback} />
             </Route>
           </Switch>
         </Router>
