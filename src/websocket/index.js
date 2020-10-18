@@ -1,4 +1,3 @@
-import { COMMAND } from '../constants'
 const WEBHOOK_URL = 'hackhouse-backend.herokuapp.com/'
 
 export default () => {
@@ -10,21 +9,24 @@ export default () => {
     console.log('Websocket connected')
   }
 
-  const iWasBad = (website) => {
-    // TODO: properly set the user object
-    window.user = ''
-    const user = window.user
-    ws.send(
-      JSON.stringify({
-        user,
-        command: COMMAND.EMERGENCY_MEETING,
-        message: `${user} visited a bad site ${website}`,
-      })
-    )
-  }
+  // extension calls this
+  window.addEventListener(
+    'message',
+    (event) => {
+      const data = event.data
+      if (data.type === 'from_extension') {
+        window.ws.send(
+          JSON.stringify({
+            broadcast: true,
+            emergency: true,
+            message: `${window.user} visited ${data.url}`,
+          })
+        )
+        console.log(event.data)
+      }
+    },
+    false
+  )
 
-  window.iWasBad = iWasBad
-
-  const passIWasBad = new CustomEvent('passIWasBad', { detail: iWasBad })
-  document.dispatchEvent(passIWasBad)
+  return ws
 }
