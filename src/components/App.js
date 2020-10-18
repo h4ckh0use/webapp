@@ -13,7 +13,7 @@ const MainContent = styled.div`
 `
 
 const App = () => {
-  initWebsocket()
+  const ws = initWebsocket()
   return (
     <MainContent className="lt-content-column">
       <Header />
@@ -30,7 +30,7 @@ const App = () => {
               <Callroom />
             </Route>
             <Route path="/joke">
-              <DadJoke />
+              <DadJoke ws={ws} />
             </Route>
             <Route path="/">
               <SignupPage />

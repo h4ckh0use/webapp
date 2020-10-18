@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Logs from '../components/Logs'
 
 /*
@@ -7,15 +7,14 @@ the Joke component. All the logic related to making the get request,
 handling the response, and setting the state are handled here.
 */
 
-const DadJoke = () => {
+const DadJoke = ({ ws }) => {
   // React hook for state
   const [messages, setMessages] = useState([])
 
-  window.ws &&
-    window.ws.onmessage((message) => {
-      console.log(message)
-      // setMessages([...messages, message])
-    })
+  ws.onmessage = (message) => {
+    console.log(message.data)
+    setMessages([...messages, message])
+  }
 
   return <Logs messages={messages} />
   // basically just executed the provided function (first parameter) whenever
