@@ -28,6 +28,7 @@ const ParseWebsocket = ({ ws }) => {
       message: `Welcome to imposter, ${window.localStorage.getItem(
         'user'
       )}! Try not to act too sus`,
+      time: Date.now(),
     },
   ])
   const [chatEntry, setChatEntry] = useState('')
