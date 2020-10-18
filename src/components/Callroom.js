@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { DBaddTime, currTimer, resetTimer } from '../utility/firebase'
+import { db } from '../utility/firebase'
 import Countdown from './Countdown'
 import Button from './Button'
 import styled from 'styled-components'
@@ -10,24 +10,39 @@ const Centered = styled.div`
 `
 
 const Callroom = (props) => {
-  const [time, setTime] = useState('')
-  const [count, setCount] = useState(0) // using this to trigger handleEffect
+  const [data, setData] = useState({})
+  const [time, setTime] = useState(new Date())
 
   useEffect(() => {
-    currTimer((time) => {
-      if (Object.keys(time).length === 0) {
-        console.log('timer does not exist')
-        DBaddTime()
-      } else {
-        console.log('Time Exists:', time.timer.toDate())
-        setTime(time.timer.toDate())
-      }
-    })
-  }, [count])
+    const unsubscribe = db
+      .collection('room')
+      .doc('kvOJ1KrHegxsTyM5AONv')
+      .onSnapshot((querySnapshot) => {
+        setData(querySnapshot.data())
+      })
+    return unsubscribe
+  }, [setData])
 
-  const reset = () => {
-    setCount(count + 1)
-    resetTimer()
+  useEffect(() => {
+    if (data.active) {
+      setTime(data.timer.toDate())
+    } else {
+      setTime(new Date())
+    }
+  }, [data])
+
+  function stop() {
+    // set is active to false
+    db.collection('room').doc('kvOJ1KrHegxsTyM5AONv').update({
+      active: false,
+    })
+  }
+
+  function start() {
+    // set is active to true
+    db.collection('room').doc('kvOJ1KrHegxsTyM5AONv').update({
+      active: true,
+    })
   }
 
   return (
@@ -35,14 +50,23 @@ const Callroom = (props) => {
       <ParseWebsocket ws={window.ws} />
       <Countdown countDownDate={time} />
       <Centered>
-        <Button
-          onClick={() => {
-            reset()
-          }}
-        >
-          {' '}
-          Reset Timer{' '}
-        </Button>
+        {data.active ? (
+          <Button
+            onClick={() => {
+              stop()
+            }}
+          >
+            Cancel timer
+          </Button>
+        ) : (
+          <Button
+            onClick={() => {
+              start()
+            }}
+          >
+            Start {data.current} timer
+          </Button>
+        )}
       </Centered>
     </>
   )
