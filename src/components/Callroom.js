@@ -56,7 +56,7 @@ const Callroom = (props) => {
               stop()
             }}
           >
-            Cancel timer
+            Cancel {data.current} period
           </Button>
         ) : (
           <Button
@@ -64,7 +64,7 @@ const Callroom = (props) => {
               start()
             }}
           >
-            Start {data.current} timer
+            Start a {data.current} timer
           </Button>
         )}
       </Centered>
