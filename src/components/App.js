@@ -13,7 +13,6 @@ import initWebsocket from '../websocket'
 const MainContent = styled.div`
   margin: 10vh 0;
 `
-
 const App = () => {
   const history = useHistory()
 
@@ -21,7 +20,6 @@ const App = () => {
   return (
     <MainContent className="lt-content-column">
       <Header />
-
       <main>
         {/*
             The Router tag allows us to conditionally render components
