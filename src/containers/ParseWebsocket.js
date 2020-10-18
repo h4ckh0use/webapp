@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import Logs from '../components/Logs'
 import ChatEntry from '../components/ChatEntry'
@@ -24,9 +23,13 @@ const ChatContainer = styled.div`
 // This component gets the messages from websocket,
 // filters them, parses, and passes them to Logs component
 const ParseWebsocket = ({ ws }) => {
-  const location = useLocation()
   const [messages, setMessages] = useState([
-    `Welcome to imposter, ${location.state.name}! Try not to act too sus`,
+    {
+      message: `Welcome to imposter, ${window.localStorage.getItem(
+        'user'
+      )}! Try not to act too sus`,
+      time: Date.now(),
+    },
   ])
   const [chatEntry, setChatEntry] = useState('')
   const [shouldShowEmergencyWrapper, setShowEmergencyWrapper] = useState(false)
@@ -37,7 +40,7 @@ const ParseWebsocket = ({ ws }) => {
     if (message.data !== 'Successful connection!') {
       const data = JSON.parse(message.data)
       if (data.broadcast) {
-        setMessages([...messages, data.message])
+        setMessages([...messages, data])
 
         if (data.emergency) {
           setShowEmergencyWrapper(true)
@@ -63,7 +66,7 @@ const ParseWebsocket = ({ ws }) => {
       ws.send(
         JSON.stringify({
           broadcast: true,
-          user: window.user,
+          user: window.localStorage.getItem('user'),
           message: chatEntry,
           time: Date.now(),
         })
@@ -86,7 +89,7 @@ const ParseWebsocket = ({ ws }) => {
     const myElement = document.getElementById('element_within_div')
     const topPos = myElement && myElement.offsetTop
     document.getElementById('scrolling_div').scrollTop = topPos
-  })
+  }, [messages])
 
   return (
     <>
