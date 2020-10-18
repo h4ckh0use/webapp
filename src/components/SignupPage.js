@@ -69,7 +69,7 @@ export default function SignupPage(props) {
         }}
       >
         <FormLabel>
-          <span>Name:</span>
+          <span>Enter your name:</span>
           <input onChange={(e) => handleChange(e)} type="text" value={name} />
         </FormLabel>
         <CirclePicker colors={colorsArray} onChangeComplete={handleColorChange} />
