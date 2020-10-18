@@ -21,7 +21,7 @@ export default () => {
           .get()
           .then((d) => d.data())
           .then((d) => {
-            if (d.active) {
+            if (d.active && d.current === 'work') {
               window.ws.send(
                 JSON.stringify({
                   broadcast: true,
