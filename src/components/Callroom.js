@@ -12,6 +12,10 @@ const Title = styled.h1`
   text-align: center;
 `
 
+const Button = styled.button`
+  font-size: 16px;
+`
+
 const Callroom = (props) => {
   const history = useHistory()
   const location = useLocation()
@@ -45,14 +49,15 @@ const Callroom = (props) => {
         <ParseWebsocket ws={window.ws} />
         <Title>Hey there, {location.state.name}!</Title>
         <Countdown countDownDate={time} />
-        <button
-          onClick={() => {
-            reset()
-          }}
-        >
-          {' '}
-          Reset Timer{' '}
-        </button>
+        <div style={{ textAlign: 'center', paddingTop: '30px' }}>
+          <Button
+            onClick={() => {
+              reset()
+            }}
+          >
+            Reset Timer
+          </Button>
+        </div>
       </>
     )
   }
