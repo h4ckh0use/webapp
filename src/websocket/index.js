@@ -1,3 +1,4 @@
+import { db } from '../utility/firebase'
 const WEBHOOK_URL = 'hackhouse-backend.herokuapp.com/'
 
 export default () => {
@@ -15,14 +16,22 @@ export default () => {
     (event) => {
       const data = event.data
       if (data.type === 'from_extension') {
-        window.ws.send(
-          JSON.stringify({
-            broadcast: true,
-            emergency: true,
-            user: window.user,
-            message: `${window.user} visited ${data.url}`,
+        db.collection('room')
+          .doc('kvOJ1KrHegxsTyM5AONv')
+          .get()
+          .then((d) => d.data())
+          .then((d) => {
+            if (d.active) {
+              window.ws.send(
+                JSON.stringify({
+                  broadcast: true,
+                  emergency: true,
+                  user: window.user,
+                  message: `${window.user} visited ${data.url}`,
+                })
+              )
+            }
           })
-        )
         console.log(event.data)
       }
     },
