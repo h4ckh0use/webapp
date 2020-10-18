@@ -13,7 +13,7 @@ const MainContent = styled.div`
 const App = () => {
   initWebsocket()
   return (
-    <MainContent className="lt-content-column">
+    <MainContent className="lt-content-column" class="stars">
       <Header />
       <main>
         {/*
