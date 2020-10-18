@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { DBadduser } from '../utility/firebase'
+import Header from '../components/Header'
 
 export default function SignupPage(props) {
   let history = useHistory()
@@ -14,6 +16,8 @@ export default function SignupPage(props) {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log('Submitted: ', name)
+    DBadduser(name)
+
     window.user = name
     history.push({
       pathname: '/room',
@@ -24,17 +28,17 @@ export default function SignupPage(props) {
 
   return (
     <div>
-      <h1> Title </h1>
+      <Header />
       <form
         onSubmit={(e) => {
           onSubmit(e)
         }}
       >
         <label>
-          Name:
+          Name: <br />
           <input onChange={(e) => handleChange(e)} type="text" value={name} />
         </label>
-        <button> Submit </button>
+        <button> Join! </button>
       </form>
     </div>
   )
