@@ -22,4 +22,6 @@ export default () => {
       })
     )
   }
+
+  window.isH4ckH0us3 = () => true
 }
