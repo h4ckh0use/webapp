@@ -1,5 +1,17 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+
+const SignupTitle = styled.h1`
+  font-family: Roboto Mono;
+`
+
+const FormLabel = styled.label`
+  display: block;
+  & > span {
+    margin-right: 1em;
+  }
+`
 import { DBadduser } from '../utility/firebase'
 import Header from '../components/Header'
 
@@ -28,17 +40,17 @@ export default function SignupPage(props) {
 
   return (
     <div>
-      <Header />
+      <SignupTitle>Character</SignupTitle>
       <form
         onSubmit={(e) => {
           onSubmit(e)
         }}
       >
-        <label>
-          Name: <br />
+        <FormLabel>
+          <span>Name:</span>
           <input onChange={(e) => handleChange(e)} type="text" value={name} />
-        </label>
-        <button> Join! </button>
+        </FormLabel>
+        <button>Join</button>
       </form>
     </div>
   )

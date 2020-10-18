@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import Logs from '../components/Logs'
 import ChatEntry from '../components/ChatEntry'
@@ -22,7 +23,10 @@ const ChatContainer = styled.div`
 // This component gets the messages from websocket,
 // filters them, parses, and passes them to Logs component
 const ParseWebsocket = ({ ws }) => {
-  const [messages, setMessages] = useState(['Welcome to imPomter'])
+  const location = useLocation()
+  const [messages, setMessages] = useState([
+    `Welcome to imposter, ${location.state.name}! Try not to act too sus`,
+  ])
   const [chatEntry, setChatEntry] = useState('')
 
   ws.onmessage = (message) => {
