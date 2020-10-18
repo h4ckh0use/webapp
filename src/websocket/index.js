@@ -10,9 +10,9 @@ export default () => {
     console.log('Websocket connected')
   }
 
-  window.iWasBad = (website) => {
+  const iWasBad = (website) => {
     // TODO: properly set the user object
-    window.user = 'hi'
+    window.user = ''
     const user = window.user
     ws.send(
       JSON.stringify({
@@ -23,5 +23,6 @@ export default () => {
     )
   }
 
-  window.isH4ckH0us3 = () => true
+  const passIWasBad = new CustomEvent('passIWasBad', { detail: iWasBad })
+  document.dispatchEvent(passIWasBad)
 }
