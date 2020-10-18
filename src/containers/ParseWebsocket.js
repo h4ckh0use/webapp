@@ -26,7 +26,9 @@ const ChatContainer = styled.div`
 const ParseWebsocket = ({ ws }) => {
   const location = useLocation()
   const [messages, setMessages] = useState([
-    `Welcome to imposter, ${location.state.name}! Try not to act too sus`,
+    {
+      message: `Welcome to imposter, ${location.state.name}! Try not to act too sus`,
+    },
   ])
   const [chatEntry, setChatEntry] = useState('')
   const [shouldShowEmergencyWrapper, setShowEmergencyWrapper] = useState(false)
@@ -37,7 +39,7 @@ const ParseWebsocket = ({ ws }) => {
     if (message.data !== 'Successful connection!') {
       const data = JSON.parse(message.data)
       if (data.broadcast) {
-        setMessages([...messages, data.message])
+        setMessages([...messages, data])
 
         if (data.emergency) {
           setShowEmergencyWrapper(true)
@@ -63,7 +65,7 @@ const ParseWebsocket = ({ ws }) => {
       ws.send(
         JSON.stringify({
           broadcast: true,
-          user: window.user,
+          user: window.localStorage.getItem('user'),
           message: chatEntry,
           time: Date.now(),
         })
@@ -86,7 +88,7 @@ const ParseWebsocket = ({ ws }) => {
     const myElement = document.getElementById('element_within_div')
     const topPos = myElement && myElement.offsetTop
     document.getElementById('scrolling_div').scrollTop = topPos
-  })
+  }, [messages])
 
   return (
     <>

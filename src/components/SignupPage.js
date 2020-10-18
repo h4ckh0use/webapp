@@ -30,6 +30,7 @@ export default function SignupPage(props) {
     DBadduser(name)
 
     window.user = name
+    window.localStorage.setItem('user', name)
     history.push({
       pathname: '/room',
       state: { name: name },
