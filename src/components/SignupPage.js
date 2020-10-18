@@ -10,6 +10,22 @@ const SignupTitle = styled.h1`
 `
 
 const Wrapper = styled.div`
+  @keyframes slidein {
+    from {
+      margin-right: 100px;
+      opacity: 0;
+    }
+
+    to {
+      margin-right: 0;
+      opacity: 1;
+    }
+  }
+
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-name: slidein;
+
   display: flex;
   flex-direction: column;
   align-items: center;
