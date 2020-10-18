@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { DBadd } from '../utility/firebase'
 
 export default function SignupPage(props) {
   let history = useHistory()
@@ -14,6 +15,8 @@ export default function SignupPage(props) {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log('Submitted: ', name)
+    DBadd(name)
+
     window.user = name
     history.push({
       pathname: '/room',
