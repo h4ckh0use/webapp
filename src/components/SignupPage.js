@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import { DBadduser } from '../utility/firebase'
 import styled from 'styled-components'
 
 const SignupTitle = styled.h1`
@@ -12,8 +13,6 @@ const FormLabel = styled.label`
     margin-right: 1em;
   }
 `
-import { DBadduser } from '../utility/firebase'
-import Header from '../components/Header'
 
 export default function SignupPage(props) {
   let history = useHistory()
