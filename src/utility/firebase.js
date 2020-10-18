@@ -16,8 +16,28 @@ firebase.initializeApp(firebaseConfig)
 
 export const db = firebase.firestore()
 
-export const DBadd = async (name) => {
+export const DBadduser = async (name) => {
   const ref = db.collection('room').doc('kvOJ1KrHegxsTyM5AONv').collection('user')
-
   await ref.add({ username: name })
+}
+
+export const resetTimer = async () => {
+  const apple = db.collection('room').doc('kvOJ1KrHegxsTyM5AONv')
+  apple.update({ timer: firebase.firestore.FieldValue.delete() })
+  DBaddTime()
+}
+
+export const DBaddTime = async () => {
+  const date = new Date()
+  const date_25 = new Date(date.getTime() + 25 * 60000)
+  console.log('ADDED TIMER:', date_25)
+  const ref = db.collection('room').doc('kvOJ1KrHegxsTyM5AONv')
+  await ref.set({ timer: new Date(date_25) })
+}
+
+export const currTimer = async (callback) => {
+  const ref = db.collection('room').doc('kvOJ1KrHegxsTyM5AONv')
+  return ref.get().then(function (doc) {
+    callback(doc.data())
+  })
 }

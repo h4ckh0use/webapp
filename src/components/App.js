@@ -15,7 +15,6 @@ const App = () => {
   initWebsocket()
   return (
     <MainContent className="lt-content-column">
-      <Header />
       <main>
         {/*
             The Router tag allows us to conditionally render components
