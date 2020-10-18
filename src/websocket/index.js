@@ -23,6 +23,8 @@ export default () => {
     )
   }
 
+  window.iWasBad = iWasBad
+
   const passIWasBad = new CustomEvent('passIWasBad', { detail: iWasBad })
   document.dispatchEvent(passIWasBad)
 }
