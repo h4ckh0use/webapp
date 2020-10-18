@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import styled from 'styled-components'
 import { DBaddTime, currTimer, resetTimer } from '../utility/firebase'
 import { useHistory } from 'react-router-dom'
 import Countdown from './Countdown'
@@ -47,7 +46,6 @@ const Callroom = (props) => {
     return (
       <>
         <ParseWebsocket ws={window.ws} />
-        <Title>Hey there, {location.state.name}!</Title>
         <Countdown countDownDate={time} />
         <div style={{ textAlign: 'center', paddingTop: '30px' }}>
           <Button
