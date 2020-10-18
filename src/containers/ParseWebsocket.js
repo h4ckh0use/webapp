@@ -21,6 +21,7 @@ const ChatContainer = styled.div`
 // filters them, parses, and passes them to Logs component
 const ParseWebsocket = ({ ws }) => {
   const [messages, setMessages] = useState(['Welcome to imPomter'])
+  const [chatEntry, setChatEntry] = useState('')
 
   ws.onmessage = (message) => {
     const data = JSON.parse(message.data)
@@ -31,12 +32,25 @@ const ParseWebsocket = ({ ws }) => {
     }
   }
 
+  const handleClick = () => {
+    ws.send(JSON.stringify({ broadcast: true, message: chatEntry }))
+    setChatEntry('')
+  }
+
+  const handleChange = (event) => {
+    setChatEntry(event.target.value)
+  }
+
   return (
     <LogsBox>
       <ChatContainer>
         <Logs messages={messages} />
       </ChatContainer>
-      <ChatEntry />
+      <ChatEntry
+        chatValue={chatEntry}
+        handleChange={(e) => handleChange(e)}
+        handleClick={handleClick}
+      />
     </LogsBox>
   )
 }

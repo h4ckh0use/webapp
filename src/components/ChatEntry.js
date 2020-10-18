@@ -26,11 +26,11 @@ const Button = styled.button`
   font-family: 'Roboto';
 `
 
-export default ({ callback }) => {
+export default ({ handleChange, handleClick, chatValue }) => {
   return (
     <Wrapper>
-      <StyledInput type="text" />
-      <Button>Submit</Button>
+      <StyledInput onChange={handleChange} type="text" value={chatValue} />
+      <Button onClick={handleClick}>Submit</Button>
     </Wrapper>
   )
 }
