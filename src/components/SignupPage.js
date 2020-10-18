@@ -37,12 +37,8 @@ export default function SignupPage(props) {
   return (
     <div>
       <SignupTitle>Character</SignupTitle>
-      <FormLabel>
-        <span>Name:</span>
-        <input onChange={(e) => handleChange(e)} type="text" value={name} />
-      </FormLabel>
-      <button
-        onClick={(e) => {
+      <form
+        onSubmit={(e) => {
           onSubmit(e)
         }}
       >
