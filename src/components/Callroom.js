@@ -15,7 +15,7 @@ const Callroom = (props) => {
     <>
       <Countdown countDownDate={date_25} />
       <ParseWebsocket ws={window.ws} />
-      <>Hey There {location.state.name}</>
+      <p>Hey There {location.state.name}</p>
     </>
   )
 }

@@ -1,7 +1,6 @@
 export function initStars() {
   var stars = 800
   var starElem = document.getElementById('stars')
-  console.log(starElem)
   var r = 500
 
   for (var i = 0; i < stars; i++) {

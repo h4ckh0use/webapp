@@ -7,11 +7,13 @@ const ParseWebsocket = ({ ws }) => {
   const [messages, setMessages] = useState(['Welcome to imPomter'])
 
   ws.onmessage = (message) => {
-    const data = JSON.parse(message.data)
-    console.log(data.broadcast)
+    if (message.data !== 'Successful connection!') {
+      const data = JSON.parse(message.data)
+      console.log(data.broadcast)
 
-    if (data.broadcast) {
-      setMessages([...messages, data.message])
+      if (data.broadcast) {
+        setMessages([...messages, data.message])
+      }
     }
   }
 
