@@ -37,7 +37,7 @@ export const DBaddTime = async () => {
 
 export const currTimer = async (callback) => {
   const ref = db.collection('room').doc('kvOJ1KrHegxsTyM5AONv')
-  return ref.get().then(function (doc) {
+  return ref.onSnapshot((doc) => {
     callback(doc.data())
   })
 }
