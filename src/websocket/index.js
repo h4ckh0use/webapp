@@ -19,6 +19,7 @@ export default () => {
           JSON.stringify({
             broadcast: true,
             emergency: true,
+            user: window.user,
             message: `${window.user} visited ${data.url}`,
           })
         )

@@ -1,17 +1,23 @@
-import React, { Component } from 'react'
+import React from 'react'
 import emergency from './emergency.svg' // Tell webpack this JS file uses this image
 import styled from 'styled-components'
 
 const EmergencyImage = styled.img`
+  transition: all 1s;
+  opacity: ${(p) => (p.isEmergency ? '100' : '0')};
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   pointer-events: none;
+  z-index: 50;
 `
 
 const EmergencyText = styled.h1`
+  transition: all 1s;
+  opacity: ${(p) => (p.isEmergency ? '100' : '0')};
   z-index: 100;
+  color: black;
 `
 
 const EmergencyWrapper = styled.div`
@@ -21,17 +27,17 @@ const EmergencyWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 55vw;
   width: 100vw;
 `
 
-const Emergency = ({ user }) => {
+const Emergency = ({ user, isEmergency }) => {
   return (
     <>
       <EmergencyWrapper>
-        <EmergencyText>{user} was off task!</EmergencyText>
+        <EmergencyText isEmergency={isEmergency}>{user} was off task!</EmergencyText>
       </EmergencyWrapper>
-      <EmergencyImage src={emergency} alt="Emergency" />
+      <EmergencyImage isEmergency={isEmergency} src={emergency} alt="Emergency" />
     </>
   )
 }
