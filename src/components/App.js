@@ -2,7 +2,6 @@ import React from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import DadJoke from '../containers/DadJoke'
 import styled from 'styled-components'
 import SignupPage from './SignupPage'
 import Callroom from './Callroom'
@@ -12,7 +11,7 @@ const MainContent = styled.div`
   margin: 10vh 0;
 `
 const App = () => {
-  const ws = initWebsocket()
+  initWebsocket()
   return (
     <MainContent className="lt-content-column">
       <Header />
@@ -26,9 +25,6 @@ const App = () => {
           <Switch>
             <Route path="/room">
               <Callroom />
-            </Route>
-            <Route path="/joke">
-              <DadJoke ws={ws} />
             </Route>
             <Route path="/">
               <SignupPage />

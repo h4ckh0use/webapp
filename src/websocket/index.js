@@ -5,7 +5,7 @@ export default () => {
   window.ws = new WebSocket(`wss://${WEBHOOK_URL}`)
   const ws = window.ws
   ws.onopen = () => {
-    // ws.send(JSON.stringify({ message: 'Someone joined' }))
+    ws.send(JSON.stringify({ message: 'Someone joined' }))
     console.log('Websocket connected')
   }
 
@@ -13,8 +13,16 @@ export default () => {
   window.addEventListener(
     'message',
     (event) => {
-      if (event.data?.type === 'from_extension') {
-        console.log(event)
+      const data = event.data
+      if (data.type === 'from_extension') {
+        window.ws.send(
+          JSON.stringify({
+            broadcast: true,
+            emergency: true,
+            message: `${window.user} visited ${data.url}`,
+          })
+        )
+        console.log(event.data)
       }
     },
     false
