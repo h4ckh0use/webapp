@@ -48,6 +48,10 @@ const ParseWebsocket = ({ ws }) => {
   const [isEmergency, setIsEmergency] = useState(false)
   const [emergencyCauser, setEmergencyCauser] = useState('')
 
+  if (!users) {
+    ws.send(JSON.stringify({ getUsers: true }))
+  }
+
   ws.onmessage = (message) => {
     if (message.data !== 'Successful connection!') {
       const data = JSON.parse(message.data)
