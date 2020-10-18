@@ -86,7 +86,7 @@ export default function SignupPage(props) {
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
-      onSubmit()
+      setStepTwo(true)
     }
   }
 
@@ -95,7 +95,7 @@ export default function SignupPage(props) {
       window.user = name
       window.localStorage.setItem('user', name)
       history.push('/room')
-      // TODO ADD COLOUR
+
       window.ws.send(JSON.stringify({ newUser: true, username: name, color }))
       window.ws.send(JSON.stringify({ broadcast: true, message: `${name} joined the room!` }))
     }
