@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
@@ -16,6 +16,7 @@ const App = () => {
   }
 
   const [color, setColor] = useState(['#C01701', '#760B39'])
+
   const colourCallback = (color) => {
     setColor(color)
   }
