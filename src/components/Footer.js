@@ -11,7 +11,9 @@ const A = styled.a`
 const Footer = () => {
   return (
     <footer>
-      a big cool hackathon project by <A href="https://github.com/h4ckh0use">h4ckh0use</A> © 2020
+      <p>
+        a big cool hackathon project by <A href="https://github.com/h4ckh0use">h4ckh0use</A> © 2020
+      </p>
     </footer>
   )
 }

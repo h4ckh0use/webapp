@@ -4,19 +4,22 @@ CSS styling in this `index.css` file and do component-level styling
 through styled-components. See `components/Header.js` for an example.
 */
 
+p,
+a,
+h1,
+h2,
+h3,
+span {
+  color: #fff;
+}
+
 body {
   font-family: Roboto;
   z-index: -99;
   overflow: hidden;
   height: 100%;
   width: 100%;
-  background: #4b6cb7; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #182848, #4b6cb7); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #182848,
-    #4b6cb7
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #02060f, #0f1b33);
 }
 
 main {

@@ -16,6 +16,7 @@ const MessageBox = styled.div`
   background: white;
   padding: 10px;
   && > p {
+    color: black;
     margin: 0;
   }
   margin: 10px 0;
