@@ -16,8 +16,14 @@ const EmergencyImage = styled.img`
 const EmergencyText = styled.h1`
   transition: all 1s;
   opacity: ${(p) => (p.isEmergency ? '100' : '0')};
+  width: 500px;
+  font-size: 4em;
+  font-weight: 700;
+  font-family: Roboto Mono;
+  text-align: center;
   z-index: 100;
-  color: black;
+  color: white;
+  -webkit-text-stroke: 2px black;
 `
 
 const EmergencyWrapper = styled.div`
@@ -27,7 +33,7 @@ const EmergencyWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 55vw;
+  height: 50vw;
   width: 100vw;
 `
 
@@ -35,7 +41,9 @@ const Emergency = ({ user, isEmergency, showWrapper }) => {
   return showWrapper ? (
     <>
       <EmergencyWrapper>
-        <EmergencyText isEmergency={isEmergency}>{user} was off task!</EmergencyText>
+        <EmergencyText isEmergency={isEmergency}>
+          {user ? user : 'Someone'} was off task!
+        </EmergencyText>
       </EmergencyWrapper>
       <EmergencyImage isEmergency={isEmergency} src={emergency} alt="Emergency" />
     </>
