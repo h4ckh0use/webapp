@@ -12,6 +12,8 @@ const FormLabel = styled.label`
     margin-right: 1em;
   }
 `
+import { DBadduser } from '../utility/firebase'
+import Header from '../components/Header'
 
 export default function SignupPage(props) {
   let history = useHistory()
@@ -26,6 +28,8 @@ export default function SignupPage(props) {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log('Submitted: ', name)
+    DBadduser(name)
+
     window.user = name
     history.push({
       pathname: '/room',
