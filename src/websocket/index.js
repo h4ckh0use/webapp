@@ -26,6 +26,7 @@ export default () => {
   window.addEventListener(
     'message',
     (event) => {
+      console.log(event)
       if (event.type === 'from_extension') {
         console.log(event)
       }
