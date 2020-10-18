@@ -26,10 +26,15 @@ const Button = styled.button`
   font-family: 'Roboto';
 `
 
-export default ({ handleChange, handleClick, chatValue }) => {
+export default ({ handleChange, handleClick, chatValue, handleKeyDown }) => {
   return (
     <Wrapper>
-      <StyledInput onChange={handleChange} type="text" value={chatValue} />
+      <StyledInput
+        onChange={handleChange}
+        type="text"
+        value={chatValue}
+        onKeyDown={handleKeyDown}
+      />
       <Button onClick={handleClick}>Submit</Button>
     </Wrapper>
   )
